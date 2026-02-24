@@ -70,6 +70,7 @@ if st.button("🚀 Rozpocznij analizę i stwórz raport", type="primary"):
                 nowa_literatura_tekst = "Nie znaleziono odpowiednich badań z ostatnich 2 lat."
 
         with st.spinner('Krok 4/4: Pisanie ostatecznego raportu. Haiku analizuje dane...'):
+            # ZMODYFIKOWANY PROMPT GŁÓWNY
             prompt_glowny = f"""
             Jesteś profesorem i analitykiem. Oto tekst dostarczonych mi badań:
             {tekst_z_pdfow}
@@ -79,10 +80,11 @@ if st.button("🚀 Rozpocznij analizę i stwórz raport", type="primary"):
 
             Napisz profesjonalny raport w języku polskim, zawierający:
             1. **Obszerny opis:** Streszczenie dostarczonych plików PDF i znalezienie tego, co je łączy.
-            2. **Kontekst najnowszych badań:** Jak wgrane PDFy mają się do najnowszej literatury.
-            3. **Future Directions:** Kierunki rozwoju na przyszłość.
+            2. **Wkład badawczy:** Dokładne i wyraźne określenie, co nowatorskiego wnoszą wgrane prace (PDF) do obecnego stanu wiedzy w tej dziedzinie.
+            3. **Kontekst najnowszych badań:** Jak wgrane PDFy mają się do najnowszej literatury.
+            4. **Future Directions:** Kierunki rozwoju na przyszłość.
 
-            Format: użyj Markdown, pogrubień i wypunktowań.
+            Format: użyj Markdown, pogrubień i wypunktowań. Raport ma być czytelny i profesjonalny.
             """
             
             # Główne zapytanie do Claude 3 Haiku
