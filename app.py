@@ -3,12 +3,11 @@ import anthropic
 from pypdf import PdfReader
 import arxiv
 from datetime import datetime
-import time
 
 # --- Konfiguracja wyglądu strony ---
 st.set_page_config(page_title="AI Asystent Badacza (Claude Haiku)", page_icon="⚡", layout="wide")
-st.title("⚡ AI Asystent Badacza: Szybka i tania analiza (Claude Haiku)")
-st.write("Wgraj pliki PDF, a ultra-szybki model Claude Haiku wyciągnie z nich to, co najważniejsze i porówna z najnowszą literaturą z ostatnich 2 lat.")
+st.title("⚡ AI Asystent Badacza: Szybka i tania analiza (Claude 3 Haiku)")
+st.write("Wgraj pliki PDF, a ultra-szybki model Claude 3 Haiku wyciągnie z nich to, co najważniejsze i porówna z najnowszą literaturą z ostatnich 2 lat.")
 
 # --- Pasek boczny: Konfiguracja ---
 with st.sidebar:
@@ -42,17 +41,16 @@ if st.button("🚀 Rozpocznij analizę i stwórz raport", type="primary"):
                     tekst_z_pdfow += strona.extract_text() + "\n"
         
         with st.spinner('Krok 2/4: Generowanie zapytań wyszukiwania (Oszczędzanie tokenów)...'):
-            # Oszczędzamy tokeny wejściowe - do wymyślenia hasła wystarczy sam początek tekstu (np. abstrakt/wstęp)
             prompt_slowa_kluczowe = f"""
             Na podstawie poniższego krótkiego fragmentu tekstu, podaj JEDNO zapytanie po angielsku (max 3-4 słowa), 
             aby znaleźć podobne badania na platformie Arxiv. Podaj TYLKO zapytanie, żadnego innego tekstu.
             Tekst: {tekst_z_pdfow[:2500]} 
             """
             
-            # Używamy ultra-szybkiego i taniego modelu Haiku
+            # Używamy niezawodnego modelu Claude 3 Haiku
             response_query = client.messages.create(
-                model="claude-3-5-haiku-20241022",
-                max_tokens=20, # Minimalizujemy tokeny wyjściowe
+                model="claude-3-haiku-20240307",
+                max_tokens=20,
                 messages=[{"role": "user", "content": prompt_slowa_kluczowe}]
             )
             zapytanie = response_query.content[0].text.strip()
@@ -87,10 +85,10 @@ if st.button("🚀 Rozpocznij analizę i stwórz raport", type="primary"):
             Format: użyj Markdown, pogrubień i wypunktowań.
             """
             
-            # Główne zapytanie - znowu model Haiku dla maksymalnej ekonomii
+            # Główne zapytanie do Claude 3 Haiku
             response_raport = client.messages.create(
-                model="claude-3-5-haiku-20241022",
-                max_tokens=2500, # Zmniejszony, ale wciąż bardzo bezpieczny limit dla obszernego podsumowania
+                model="claude-3-haiku-20240307",
+                max_tokens=2500,
                 messages=[{"role": "user", "content": prompt_glowny}]
             )
             raport = response_raport.content[0].text
