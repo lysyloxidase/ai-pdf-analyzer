@@ -7,7 +7,7 @@ Original file is located at
     https://colab.research.google.com/drive/1tpBzbjKO73MynMhgRorSFS18bnEGfbVw
 """
 
-
+import time
 import streamlit as st
 import google.generativeai as genai
 from pypdf import PdfReader
@@ -69,6 +69,9 @@ if st.button("🚀 Rozpocznij analizę i stwórz raport", type="primary"):
             if not nowa_literatura_tekst:
                 nowa_literatura_tekst = "Nie znaleziono odpowiednich badań z ostatnich 2 lat. Pomiń ten krok w raporcie."
 
+        with st.spinner('Krok 3.5: Czekam 40 sekund na odświeżenie darmowych limitów AI... ☕'):
+            time.sleep(40)
+        
         with st.spinner('Krok 4/4: Pisanie ostatecznego raportu...'):
             prompt_glowny = f"""
             Jesteś wybitnym profesorem i analitykiem. Oto pełen tekst dostarczonych mi badań (PDF):
