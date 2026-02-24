@@ -38,7 +38,7 @@ if st.button("🚀 Rozpocznij analizę i stwórz raport", type="primary"):
     try:
         # Konfiguracja API
         genai.configure(api_key=klucz_api)
-        model = genai.GenerativeModel('gemini-1.5-flash')
+        model = genai.GenerativeModel('gemini-2.0-flash')
 
         with st.spinner('Krok 1/4: Czytanie plików PDF...'):
             tekst_z_pdfow = ""
