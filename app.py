@@ -15,7 +15,7 @@ import arxiv
 from datetime import datetime
 
 st.set_page_config(page_title="AI Asystent Badacza", page_icon="🧠", layout="wide")
-st.title("🧠 AI Asystent Badacza: Analiza PDF i Future Directions")
+st.title("🧠 AI Asystent Rehab Performance: Analiza PDF i Future Directions")
 st.write("Wgraj swoje pliki PDF (badania naukowe), a sztuczna inteligencja przeanalizuje je, znajdzie najnowszą literaturę z ostatnich 2 lat i wygeneruje kompleksowy raport.")
 
 with st.sidebar:
