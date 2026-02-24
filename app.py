@@ -7,9 +7,7 @@ Original file is located at
     https://colab.research.google.com/drive/1tpBzbjKO73MynMhgRorSFS18bnEGfbVw
 """
 
-!pip install streamlit
-!pip install pypdf
-!pip install arxiv
+
 import streamlit as st
 import google.generativeai as genai
 from pypdf import PdfReader
